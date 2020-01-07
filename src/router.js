@@ -10,15 +10,21 @@ const routes = [
     {
         path: '/',
         name: 'home',
-        component: Home
+        component: Home,
+        icon: 'home',
+        text: 'Home'
     },
     {
         path: '/about',
         name: 'about',
-        component: About
+        component: About,
+        icon: 'info',
+        text: 'About us'
     }
 ]
-
+export {
+    routes
+}
 export default new VueRouter({
     routes,
     mode: 'history'    

@@ -1,15 +1,18 @@
 <template>
-  <v-app id="inspire">
+  <v-app>
     <v-navigation-drawer
     :value="true"
       app
       :mini-variant="drawer"
     >
+      <div class="app__logo">
+        <img src="https://web.lasa.vn/w/nhakhoa/wp-content/uploads/2019/07/1.png" alt="App Logo">
+      </div>
       <v-list dense>
         <v-list-item
           v-for="item in items"
           :key="item.text"
-          link
+          :to="item.path"
         >
           <v-list-item-action>
             <v-icon>{{ item.icon }}</v-icon>
@@ -20,43 +23,13 @@
             </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <v-subheader class="mt-4 grey--text text--darken-1">SUBSCRIPTIONS</v-subheader>
-        <v-list>
-          <v-list-item
-            v-for="item in items2"
-            :key="item.text"
-            link
-          >
-            <v-list-item-avatar>
-              <img
-                :src="`https://randomuser.me/api/portraits/men/${item.picture}.jpg`"
-                alt=""
-              >
-            </v-list-item-avatar>
-            <v-list-item-title v-text="item.text" />
-          </v-list-item>
-        </v-list>
-        <v-list-item
-          class="mt-4"
-          link
-        >
-          <v-list-item-action>
-            <v-icon color="grey darken-1">mdi-plus-circle-outline</v-icon>
-          </v-list-item-action>
-          <v-list-item-title class="grey--text text--darken-1">Browse Channels</v-list-item-title>
-        </v-list-item>
-        <v-list-item link>
-          <v-list-item-action>
-            <v-icon color="grey darken-1">mdi-settings</v-icon>
-          </v-list-item-action>
-          <v-list-item-title class="grey--text text--darken-1">Manage Subscriptions</v-list-item-title>
-        </v-list-item>
       </v-list>
     </v-navigation-drawer>
 
     <v-app-bar
       app
       dense
+      flat
     >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-icon class="mx-4">fab fa-youtube</v-icon>
@@ -76,29 +49,28 @@
 </template>
 
 <script>
+  import {routes} from '@/router'
+
   export default {
     props: {
       source: String,
     },
     data: () => ({
       drawer: null,
-      items: [
-        { icon: 'trending_up', text: 'Most Popular' },
-        { icon: 'subscriptions', text: 'Subscriptions' },
-        { icon: 'history', text: 'History' },
-        { icon: 'featured_play_list', text: 'Playlists' },
-        { icon: 'watch_later', text: 'Watch Later' },
-      ],
-      items2: [
-        { picture: 28, text: 'Joseph' },
-        { picture: 38, text: 'Apple' },
-        { picture: 48, text: 'Xbox Ahoy' },
-        { picture: 58, text: 'Nokia' },
-        { picture: 78, text: 'MKBHD' },
-      ],
+      items: routes
     }),
-    created () {
-      this.$vuetify.theme.dark = true
-    },
   }
 </script>
+
+<style lang="scss">
+  .app__logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 48px;
+    img {
+      max-width: 100%;
+      max-height: 100%;
+    }
+  }
+</style>
