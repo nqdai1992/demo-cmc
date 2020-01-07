@@ -2,7 +2,11 @@ import mutations from './mutations'
 import actions from './actions'
 import getters from './getters'
 
-const defaultState = {}
+const defaultState = {
+    name: 'Product',
+    products: [],
+    product: {},
+}
 
 export default {
     namespaced: true,
