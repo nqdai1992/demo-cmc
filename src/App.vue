@@ -1,28 +1,15 @@
 <template>
   <v-app>
     <v-navigation-drawer
-    :value="true"
+      :value="true"
       app
       :mini-variant="drawer"
     >
       <div class="app__logo">
         <img src="https://web.lasa.vn/w/nhakhoa/wp-content/uploads/2019/07/1.png" alt="App Logo">
       </div>
-      <v-list dense>
-        <v-list-item
-          v-for="item in items"
-          :key="item.text"
-          :to="item.path"
-        >
-          <v-list-item-action>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>
-              {{ item.text }}
-            </v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
+      <v-list rounded dense>
+        <AppNavigationItem v-for="item in items" :key="item.text" :item="item"/>
       </v-list>
     </v-navigation-drawer>
 
@@ -35,25 +22,26 @@
     </v-app-bar>
 
     <v-content>
-      <v-container class="fill-height">
-        <v-content>
-          <router-view />
-        </v-content>
+      <v-container>
+        <router-view />
       </v-container>
     </v-content>
   </v-app>
 </template>
 
 <script>
-  import {routes} from '@/router'
-
+  import {navigation} from '@/router'
+  import AppNavigationItem from '@/components/AppNavigationItem'
   export default {
+    components: {
+      AppNavigationItem
+    },
     props: {
       source: String,
     },
     data: () => ({
       drawer: null,
-      items: routes
+      items: navigation
     }),
   }
 </script>
