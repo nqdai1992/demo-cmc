@@ -28,7 +28,8 @@ const navigation = [
             {
                 path: '/',
                 text: 'Product',
-                type: 'item'
+                type: 'item',
+                icon: 'loyalty',
             }
         ]
     },
