@@ -1,12 +1,15 @@
 <template>
-  <div>
+  <AppPage title="Products">
       <h1>Product page</h1>
-  </div>
+  </AppPage>
 </template>
 
 <script>
+import AppPage from '@/components/AppPage'
 export default {
-
+  components: {
+    AppPage
+  }
 }
 </script>
 
