@@ -15,7 +15,7 @@ export default {
     async fetchProducts ({ commit }) {
         try {
             const response = await getAllProducts();
-            commit(formatDataAllProducts(response.data))
+            commit('SET_PRODUCTS', formatDataAllProducts(response.data))
         } catch (err) {
             throw new Error(err)
         }
@@ -25,7 +25,7 @@ export default {
         try {
             if (!productId) throw new Error('Product id is undefined') 
             const response = await getProduct(productId);
-            commit(formatDataProduct(response.data))
+            commit('SET_PRODUCT', formatDataProduct(response.data))
         } catch (err) {
             throw new Error(err)
         }

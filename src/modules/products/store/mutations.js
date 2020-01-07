@@ -1,8 +1,8 @@
 export default {
-    updateProducts (state, payload = []) {
+    SET_PRODUCTS (state, payload = []) {
         state.products = payload.slice(0);
     },
-    updateProduct (state, payload = {}) {
+    SET_PRODUCT (state, payload = {}) {
         state.product = JSON.parse(JSON.stringify(payload))
     }
 }
