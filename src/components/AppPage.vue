@@ -20,7 +20,16 @@
     <AppDialog />
     <AppSnackbar />
     <v-overlay :value="requestState === 'loading'">
-      <v-progress-circular indeterminate size="32"></v-progress-circular>
+      <div class="text-center">
+        <v-progress-circular class="mb-4" indeterminate size="32"></v-progress-circular>
+        <div>
+          <span v-if="requestMethod === 'get'">Fetching data...</span>
+          <span v-else-if="requestMethod === 'post'">Creating data...</span>
+          <span v-else-if="requestMethod === 'put'">Updating data...</span>
+          <span v-else>Removing data</span>
+        </div>
+        
+      </div>
     </v-overlay>
   </div>
 </template>
