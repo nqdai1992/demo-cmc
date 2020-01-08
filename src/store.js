@@ -7,8 +7,20 @@ import ProductStore from './modules/products/store'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-    modules: {
-        AboutStore,
-        ProductStore
+  state: {
+    requestState: 'done',
+    requestMethod: 'get',
+  },
+  mutations: {
+    SET_REQUEST_STATE (state, payload) {
+      state.requestState = payload
+    },
+    SET_REQUEST_METHOD (state, payload) {
+      state.requestMethod = payload
     }
+  },
+  modules: {
+    AboutStore,
+    ProductStore
+  }
 })

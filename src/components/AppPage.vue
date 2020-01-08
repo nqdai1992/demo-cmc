@@ -19,10 +19,14 @@
     
     <AppDialog />
     <AppSnackbar />
+    <v-overlay :value="requestState === 'loading'">
+      <v-progress-circular indeterminate size="32"></v-progress-circular>
+    </v-overlay>
   </div>
 </template>
 
 <script>
+  import { mapState } from 'vuex'
   export default {
     name: 'AppPage',
     props: {
@@ -30,6 +34,9 @@
         type: String,
         default: ''
       }
+    },
+    computed: {
+      ...mapState(['requestState', 'requestMethod'])
     }
   }
 </script>
@@ -38,5 +45,8 @@
 .page__header {
   display: flex;
   justify-content: space-between;
+}
+.page__content {
+  position: relative;
 }
 </style>
