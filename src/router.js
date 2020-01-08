@@ -4,6 +4,8 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 const Products = () => import('@/modules/products/components/Products.vue')
+const AddProduct = () => import('@/modules/products/components/AddProduct.vue')
+const EditProduct = () => import('@/modules/products/components/EditProduct.vue')
 const About = () => import('@/modules/About/components/About.vue')
 
 const routes = [
@@ -11,6 +13,16 @@ const routes = [
         path: '/',
         name: 'prodcuts',
         component: Products,
+    },
+    {
+        path: '/add-product',
+        name: 'prodcuts',
+        component: AddProduct,
+    },
+    {
+        path: '/edit-product',
+        name: 'prodcuts',
+        component: EditProduct,
     },
     {
         path: '/about',

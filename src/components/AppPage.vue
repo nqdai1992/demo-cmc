@@ -1,6 +1,6 @@
 <template>
   <div class="app__page page">
-    <div class="page__header">
+    <div class="page__header mb-3">
       <div class="page__title title">
         {{title}}
       </div>
@@ -16,6 +16,8 @@
     <div class="page__content">
       <slot name="page__content" />
     </div>
+    
+    <AppDialog />
   </div>
 </template>
 
@@ -31,6 +33,9 @@
   }
 </script>
 
-<style>
-
+<style lang="scss">
+.page__header {
+  display: flex;
+  justify-content: space-between;
+}
 </style>

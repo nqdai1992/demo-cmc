@@ -6,16 +6,12 @@ import {
     createProduct
 } from '@/api/products.api'
 
-import {
-    formatDataAllProducts,
-    formatDataProduct
-} from '../helpers'
 
 export default {
     async fetchProducts ({ commit }) {
         try {
             const response = await getAllProducts();
-            commit('SET_PRODUCTS', formatDataAllProducts(response.data))
+            commit('SET_PRODUCTS', response.data)
         } catch (err) {
             throw new Error(err)
         }
@@ -25,7 +21,7 @@ export default {
         try {
             if (!productId) throw new Error('Product id is undefined') 
             const response = await getProduct(productId);
-            commit('SET_PRODUCT', formatDataProduct(response.data))
+            commit('SET_PRODUCT', response.data)
         } catch (err) {
             throw new Error(err)
         }
@@ -34,7 +30,7 @@ export default {
     async removeProduct (context, { productId = '' }) {
         try {
             if (!productId) throw new Error('Product id is undefined') 
-            await deleteProduct(productId);
+            return await deleteProduct(productId);
         } catch (err) {
             throw new Error(err)
         }
@@ -43,16 +39,16 @@ export default {
     async modifyProduct (context, { productId = '', payload }) {
         try {
             if (!productId) throw new Error('Product id is undefined')
-            await updateProduct(productId, payload);
+            return await updateProduct(productId, payload);
         } catch (err) {
             throw new Error(err)
         }
     },
 
-    async addProdut (context, { payload }) {
+    async addProduct (context, { payload }) {
         try {
             if (!payload || !(typeof payload === 'object')) throw new Error('Content of product must be object')
-            await createProduct(payload);
+            return await createProduct(payload);
         } catch (err) {
             throw new Error(err)
         }
