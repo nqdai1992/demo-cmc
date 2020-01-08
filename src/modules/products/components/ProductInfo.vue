@@ -32,6 +32,22 @@ export default {
   components: {
     AppDatePicker
   },
+  props: {
+    initItem: {
+      type: Object,
+      default () {
+        return {}
+      }
+    }
+  },
+  watch: {
+    initItem: {
+      handler (val) {
+        this.convertInitItem(val)
+      },
+      immediate: true
+    }
+  },
   data () {
     return {
       valid: false,
@@ -95,14 +111,14 @@ export default {
     payload () {
       return {
         productName: this.productName,
-        productType: this.productType.value,
-        productTemplate: this.productTemplate.value,
+        productType: this.productType,
+        productTemplate: this.productTemplate,
         visibleIndividual: this.visibleIndividual,
         shortDescription: this.shortDescription,
         fullDescription: this.fullDescription,
         flag: this.flag,
         adminComment: this.adminComment,
-        vendor: this.vendor.value,
+        vendor: this.vendor,
         showOnHomePage: this.showOnHomePage,
         order: this.order,
         gtin: this.gtin,
@@ -113,6 +129,24 @@ export default {
     }
   },
   methods: {
+    convertInitItem (item) {
+      if (!item || Object.keys(item).length === 0) return 
+      this.productName = item.productName,
+      this.productType = item.productType,
+      this.productTemplate = item.productTemplate,
+      this.visibleIndividual = item.visibleIndividual,
+      this.shortDescription = item.shortDescription,
+      this.fullDescription = item.fullDescription,
+      this.flag = item.flag,
+      this.adminComment = item.adminComment,
+      this.vendor = item.vendor.value,
+      this.showOnHomePage = item.showOnHomePage,
+      this.order = item.order,
+      this.gtin = item.gtin,
+      this.startDate = item.startDate,
+      this.endDate = item.endDate,
+      this.published = item.published
+    },
     validate () {
       return this.$refs['form'].validate()
     }

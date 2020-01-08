@@ -34,6 +34,14 @@
           :loading="loading"
           class="elevation-0"
         >
+          <template v-slot:item.productName="{item}">
+            <router-link :to="`/edit-product/${item.id}`">{{ item.productName }}</router-link>
+          </template>
+
+          <template v-slot:item.productType="{item}">
+            {{item.productType.value}}
+          </template>
+
           <template v-slot:item.picture="{ item }">
             <img width="75" height="75" :src="item.picture" alt="picture product" />
           </template>
