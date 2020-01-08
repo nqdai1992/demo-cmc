@@ -20,7 +20,7 @@ const routes = [
         component: AddProduct,
     },
     {
-        path: '/edit-product',
+        path: '/edit-product/:id',
         name: 'prodcuts',
         component: EditProduct,
     },

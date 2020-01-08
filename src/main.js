@@ -6,6 +6,7 @@ import router from './router'
 import vuetify from './plugins/vuetify';
 
 import './plugins/dialog'
+import './plugins/snackbar'
 
 Vue.config.productionTip = false
 

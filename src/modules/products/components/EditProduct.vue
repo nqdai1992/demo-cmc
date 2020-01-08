@@ -1,6 +1,8 @@
 <template>
   <AppPage title="Edit product">
-    <ProductInfo />
+    <template v-slot:page__content>
+      <ProductInfo />
+    </template>
   </AppPage>
 </template>
 

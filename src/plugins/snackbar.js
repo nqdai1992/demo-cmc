@@ -1,16 +1,14 @@
 import Vue from 'vue'
-import AppDialog from '@/components/AppDialog'
+import AppSnackbar from '@/components/AppSnackbar'
 
 const module = {
   install (Vue) {
-    Vue.component('AppDialog', AppDialog)
+    Vue.component('AppSnackbar', AppSnackbar)
     
-    Vue.prototype.$dialog = {
+    Vue.prototype.$snackbar = {
       isOpen: false,
       options: {
-        title: '',
         state: 'info',
-        callback: null,
         content: ''
       },
       open (options) {
@@ -20,9 +18,7 @@ const module = {
       close () {
         this.isOpen = false
         this.options = {
-            title: '',
             state: 'info',
-            callback: null,
             content: ''
         };
       }

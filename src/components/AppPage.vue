@@ -18,6 +18,7 @@
     </div>
     
     <AppDialog />
+    <AppSnackbar />
   </div>
 </template>
 

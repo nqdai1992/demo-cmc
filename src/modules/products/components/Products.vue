@@ -11,7 +11,7 @@
 
       <template v-slot:page__actions>
         <div class="d-flex">
-          <v-btn class="mr-2" color="success" small>
+          <v-btn @click="$router.push('/add-product')" class="mr-2" color="success" small>
             <v-icon small>add</v-icon>
             <span>Add</span>
           </v-btn>
