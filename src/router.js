@@ -6,6 +6,11 @@ Vue.use(VueRouter)
 const Products = () => import('@/modules/products/components/Products.vue')
 const AddProduct = () => import('@/modules/products/components/AddProduct.vue')
 const EditProduct = () => import('@/modules/products/components/EditProduct.vue')
+
+const Categories = () => import('@/modules/categories/components/Categories.vue')
+const AddCategory = () => import('@/modules/categories/components/AddCategory.vue')
+const EditCategory = () => import('@/modules/categories/components/EditCategory.vue')
+
 const About = () => import('@/modules/About/components/About.vue')
 
 const routes = [
@@ -16,13 +21,28 @@ const routes = [
     },
     {
         path: '/add-product',
-        name: 'prodcuts',
+        name: 'Add Prodcut',
         component: AddProduct,
     },
     {
         path: '/edit-product/:id',
-        name: 'prodcuts',
+        name: 'Edit Prodcut',
         component: EditProduct,
+    },
+    {
+        path: '/categories',
+        name: 'Categories',
+        component: Categories
+    },
+    {
+        path: '/add-category',
+        name: 'Add Category',
+        component: AddCategory
+    },
+    {
+        path: '/edit-category',
+        name: 'Edit Category',
+        component: EditCategory
     },
     {
         path: '/about',
@@ -42,6 +62,12 @@ const navigation = [
                 text: 'Product',
                 type: 'item',
                 icon: 'loyalty',
+            },
+            {
+                path: '/categories',
+                text: 'Catefories',
+                type: 'item',
+                icon: 'label',
             }
         ]
     },
