@@ -4,8 +4,12 @@ import {
     deleteCategory,
     updateCategory,
     createCategory
-} from '@/api/Categorys.api'
+} from '@/api/categories.api'
 
+import  {
+  getTreeCategory,
+  updateTreeCategory
+} from '@/api/tree-categories.api'
 
 export default {
     async fetchCategories ({ commit }) {
@@ -23,7 +27,7 @@ export default {
             const response = await getCategory(categoryId);
             commit('SET_CATEGORY', response.data)
         } catch (err) {
-            throw new Error(err)
+            throw err.response
         }
     },
 
@@ -49,6 +53,23 @@ export default {
         try {
             if (!payload || !(typeof payload === 'object')) throw new Error('Content of category must be object')
             return await createCategory(payload);
+        } catch (err) {
+            throw new Error(err)
+        }
+    },
+
+    async fetchTreeCategory ({commit}) {
+        try {
+            const response = await getTreeCategory()
+            commit('SET_TREE_CATEGORIES', response.data)
+        } catch (err) {
+            throw new Error(err)
+        }
+    },
+
+    async modifyTreeCategories (context, { payload }) {
+        try {
+            await updateTreeCategory(payload)
         } catch (err) {
             throw new Error(err)
         }

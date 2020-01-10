@@ -5,7 +5,7 @@
         <v-select label="Product Type" v-model="productType" :items="listProductType" item-text="label" item-value="value"></v-select>
         <v-checkbox v-model="visibleIndividual" label="Visible individual"></v-checkbox>
         <v-select label="Product template" v-model="productTemplate" :items="listProductTemplate" item-text="label" item-value="value"></v-select>
-        <v-text-field :rules="[rules.required, rules.min]" v-model="productName" label="Product name"></v-text-field>
+        <v-text-field :rules="[rules.required]" v-model="productName" label="Product name"></v-text-field>
         <v-textarea v-model="shortDescription" label="Short description"></v-textarea>
 
         <v-text-field v-model="flag"  label="Flag"></v-text-field>

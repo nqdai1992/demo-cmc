@@ -1,6 +1,6 @@
 module.exports = {
   "css": {
-    "requireModuleExtension": false,
+    "requireModuleExtension": true,
     "loaderOptions": {
       "css": {
         "modules": {
