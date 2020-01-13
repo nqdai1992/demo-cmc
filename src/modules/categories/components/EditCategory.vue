@@ -5,7 +5,7 @@
         <v-icon>keyboard_backspace</v-icon>
         Back to caltegories list
       </v-btn>
-       <v-btn class="mr-3" text color="error" small @click="removeCategory">
+       <v-btn class="mr-3" text color="error" small @click="excecuteRemoveCategory">
         <v-icon small class="mr-2">delete</v-icon>
         <span>Remove</span>
       </v-btn>
@@ -64,7 +64,8 @@ export default {
       'fetchCategory',
       'modifyCategory',
       'fetchTreeCategory',
-      'modifyTreeCategories'
+      'modifyTreeCategories',
+      'removeCategory'
     ]),
     async updateCategory () {
       if (!this.$refs['category-info'].validate()) return
@@ -83,13 +84,13 @@ export default {
           },
           res.data
         )
-        console.log('e', this.fullTreeData)
+
         let newTreeData = Object.assign({}, {
           root: this.fullTreeData
         }, {
           root: this.treeView.treeData
         })
-        console.log('f', newTreeData)
+     
         delete newTreeData.id
         await this.modifyTreeCategories({
           payload: newTreeData
@@ -106,8 +107,18 @@ export default {
         })
       }
     },
-    removeCategory () {
-      console.log('Remove category')
+    excecuteRemoveCategory () {
+      this.$dialog.open({
+        title: "Do you want remove this item ?",
+        state: 'error',
+        content: `Item: ${this.processCategory.name}`,
+        callback: async () => {
+          await this.removeCategory({
+            categoryId: this.processCategory.id
+          })
+          this.$router.push('/categories')
+        }
+      })
     }
   }
 }

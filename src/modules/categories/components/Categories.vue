@@ -9,14 +9,21 @@
     <template v-slot:page__content>
       <v-card outlined>
         <v-card-text>
-          <v-treeview :items="treeDataWithoutRoot" hoverable>
+          <!-- <v-treeview :items="treeDataWithoutRoot" hoverable>
             <template v-slot:append="{ item, open }">
               <v-btn @click="editCategories(item.id)" small outlined color="primary">
                 <v-icon class="mr-2" small>edit</v-icon>
                 <span>Edit</span>
               </v-btn>
             </template>
-          </v-treeview>
+          </v-treeview> -->
+          <v-list-item v-for="item in processCategories" :key="item.id">
+            <v-list-item-content>
+              <v-list-item-title>
+                <router-link :to="`/edit-category/${item.id}`">{{item.pathString}}</router-link>
+              </v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
         </v-card-text>
       </v-card>
     </template>
