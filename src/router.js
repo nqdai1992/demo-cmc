@@ -40,7 +40,7 @@ const routes = [
         component: AddCategory
     },
     {
-        path: '/edit-category',
+        path: '/edit-category/:id',
         name: 'Edit Category',
         component: EditCategory
     },

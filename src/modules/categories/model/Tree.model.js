@@ -41,31 +41,44 @@ export default class TreeData {
       if (!this.mapTreeData[parentId].children) {
         this.mapTreeData[parentId].children = []
       }
-      this.mapTreeData[parentId].children.splice(order, 1, childData)
+      console.log('a', order, childData, parentId)
+      this.mapTreeData[parentId].children.splice(order, 0, childData)
     } else {
       if (!this.mapTreeData.root.children) {
         this.mapTreeData.root.children = []
       } 
+      console.log('b', order, childData, parentId)
       this.mapTreeData.root.children.push(childData)
     }
     
   }
-  removeChild(parentId, order) {
-    if (!parentId) return
-    if (!order) return
-    this.mapTreeData[parentId].children.splice(order, 0)
+  removeChild(parentId, childData) {
+    if (!childData) return
+    if (!childData.id) return
+    
+    if (parentId) {
+      console.log('c', childData, this.mapTreeData[parentId])
+      this.mapTreeData[parentId].children = this.mapTreeData[parentId].children.filter(item => item.id !== childData.id)
+    } else {
+      console.log('d', childData, parentId)
+      this.mapTreeData.root.children = this.mapTreeData.root.children.filter(item => item.id !== childData.id)
+    }
+  }
+  updateItem (payload) {
+    this.mapTreeData[payload.id] = Object.assign(this.mapTreeData[payload.id], payload)
   }
   moveItem (from, to, childData) {
-    this.addChild(to.parentId, childData, to.order)
-    this.removeChild(from.parentId, from.order)
-  }
-  removeItem (from) {
-    this.removeChild(from.parentId, from.order)
-    this.mapTreeData()
+    if (from.parentId === to.parentId) {
+      return this.updateItem(childData)
+    }
+    let payload = JSON.parse(JSON.stringify(childData))
+    this.addChild(payload, to.parentId, to.order)
+    this.removeChild(from.parentId, payload)
+    this.updateMapTree()
   }
   updateMapTree () {
     this.mapTreeData = {}
-    this.buildMapTreeData(this._treeData)
+    this.buildMapTreeData(this._treeData, { isRoot: false })
     this.emit('update')
   }
   register (eventName, callback) {

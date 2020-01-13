@@ -11,12 +11,17 @@ export default {
         
     },
     processCategories (state) {
-        state.categories.forEach(item => {
+        let categories = state.categories.map(item => {
             item.pathString = item.path.join('>>')
+            return item
         })
-        return state.categories
+        return categories
     },
     processCategory (state) {
-        return state.category
+        let item = JSON.parse(JSON.stringify(state.category)) || {}
+        if (item.path) {
+            item.pathString = item.path.join('>>')
+        }
+        return item
     }
 }

@@ -8,7 +8,7 @@
         <label>Description</label>
         <AppEditor @change="description = $event"/>
         <v-text-field label="Picture" v-model="picture"></v-text-field>
-        <v-select label="Parent category" v-model="parentCategory" :items="processCategories" item-text="pathString" return-object></v-select>
+        <v-select label="Parent category" v-model="parentCategory" :items="processCategories" item-text="pathString" item-value="id" return-object></v-select>
         <v-text-field label="Price range" v-model="priceRange"></v-text-field>
         <v-checkbox v-model="showOnHomePage" label="Show on home page"></v-checkbox>
         <v-checkbox v-model="featuredOnHomePage" label="Show featured products on home page"></v-checkbox>
@@ -26,6 +26,33 @@ import { mapActions, mapGetters } from 'vuex'
 export default {
   components: {
     AppEditor
+  },
+  props: {
+    initItem: {
+      type: Object,
+      default () {
+        return {}
+      }
+    }
+  },
+  watch: {
+    initItem: {
+      handler (val) {
+        if (val || Object.keys(val).length > 0) {
+          this.name = val.name
+          this.description = val.description
+          this.categoryTemplate = val.categoryTemplate
+          this.picture = val.picture
+          this.parentCategory = val.parentCategory
+          this.priceRange = val.priceRange
+          this.showOnHomePage = val.showOnHomePage
+          this.featuredOnHomePage = val.featuredOnHomePage
+          this.includeMenu = val.includeMenu
+          this.categoryOnSeachBar = val.categoryOnSeachBar
+          this.published = val.published
+        }
+      }
+    }
   },
   data () {
     return {
@@ -68,7 +95,6 @@ export default {
       if (this.parentCategory && this.parentCategory.path) {
         path = [...this.parentCategory.path, this.name]
       }
-      console.log(path)
       return {
         valid: this.valid,
         name: this.name,

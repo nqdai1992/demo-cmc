@@ -9,7 +9,14 @@
     <template v-slot:page__content>
       <v-card outlined>
         <v-card-text>
-          <v-treeview :items="treeDataWithoutRoot"></v-treeview>
+          <v-treeview :items="treeDataWithoutRoot" hoverable>
+            <template v-slot:append="{ item, open }">
+              <v-btn @click="editCategories(item.id)" small outlined color="primary">
+                <v-icon class="mr-2" small>edit</v-icon>
+                <span>Edit</span>
+              </v-btn>
+            </template>
+          </v-treeview>
         </v-card-text>
       </v-card>
     </template>
@@ -34,7 +41,11 @@ export default {
     ...mapActions('CategoryStore',[
       'fetchCategories',
       'fetchTreeCategory'
-    ])
+    ]),
+    editCategories (id) {
+      if (!id) return 
+      this.$router.push(`/edit-category/${id}`)
+    }
   }
 }
 </script>
