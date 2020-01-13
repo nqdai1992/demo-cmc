@@ -57,10 +57,8 @@ export default class TreeData {
     if (!childData.id) return
     
     if (parentId) {
-      console.log('c', childData, this.mapTreeData[parentId])
       this.mapTreeData[parentId].children = this.mapTreeData[parentId].children.filter(item => item.id !== childData.id)
     } else {
-      console.log('d', childData, parentId)
       this.mapTreeData.root.children = this.mapTreeData.root.children.filter(item => item.id !== childData.id)
     }
   }

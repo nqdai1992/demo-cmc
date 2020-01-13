@@ -61,7 +61,9 @@ export default {
           payload
         })
         this.treeView.addChild(res.data, res.data.parentCategory.id)
-        let newTreeData = Object.assign({}, this.fullTreeData, {
+        let newTreeData = Object.assign({}, {
+          root: this.fullTreeData
+        }, {
           root: this.treeView.treeData
         })
         delete newTreeData.id

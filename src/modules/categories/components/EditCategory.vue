@@ -84,10 +84,12 @@ export default {
           res.data
         )
         console.log('e', this.fullTreeData)
-        let newTreeData = Object.assign({}, this.fullTreeData, {
+        let newTreeData = Object.assign({}, {
+          root: this.fullTreeData
+        }, {
           root: this.treeView.treeData
         })
-        console.log('f', this.newTreeData)
+        console.log('f', newTreeData)
         delete newTreeData.id
         await this.modifyTreeCategories({
           payload: newTreeData
